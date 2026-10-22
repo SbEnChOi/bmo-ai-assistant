@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-22",
+  "renderer": "CodeSnap 1.3.4 webview with escaped source clipboard HTML",
+  "snippets": [
+    {
+      "id": "01-fresh-exposure",
+      "file": "bmo/camera.py",
+      "start": 61,
+      "end": 67,
+      "title": "대기 프레임을 버리고 새 노출 받기",
+      "source_sha256": "073f438ae7e2757de33badac14246e75a4d1a6b313f64e2f912b82977de7c6d6",
+      "snippet": "docs/snippets/01-fresh-exposure.py",
+      "image": "assets/code/01-fresh-exposure.png"
+    },
+    {
+      "id": "02-fresh-context",
+      "file": "bmo/live.py",
+      "start": 322,
+      "end": 325,
+      "title": "새 사진 요청에서 과거 문맥 제외하기",
+      "source_sha256": "1acfde56fa2857c7ec703e04786188d1cf97cdf948126651ce7332f10fa550b7",
+      "snippet": "docs/snippets/02-fresh-context.py",
+      "image": "assets/code/02-fresh-context.png"
+    },
+    {
+      "id": "03-input-hold",
+      "file": "bmo/web/mic-focus-core.js",
+      "start": 18,
+      "end": 23,
+      "title": "큰 입력으로 시작하고 약한 후속 음절 유지하기",
+      "source_sha256": "f1154f4dac4c29749765ebad75c43761a0c5c4af6e2f155644c3bfba0c1d3527",
+      "snippet": "docs/snippets/03-input-hold.js",
+      "image": "assets/code/03-input-hold.png"
+    },
+    {
+      "id": "04-notice-timing",
+      "file": "bmo/observation.py",
+      "start": 227,
+      "end": 231,
+      "title": "조용한 틈과 안내 횟수 제한 확인하기",
+      "source_sha256": "eedc85788fe6487c94dea93b6bd23de8ed92ee54858f61996b259589dd88dece",
+      "snippet": "docs/snippets/04-notice-timing.py",
+      "image": "assets/code/04-notice-timing.png"
+    },
+    {
+      "id": "05-expression-pool",
+      "file": "bmo/web/emotions.js",
+      "start": 3,
+      "end": 14,
+      "title": "감정별 여러 표정과 직전 표정 반복 회피",
+      "source_sha256": "8f3f261144fa8ef2b30747efc5b24f8ab9b9275ee6fab953e7b442a803d18590",
+      "snippet": "docs/snippets/05-expression-pool.js",
+      "image": "assets/code/05-expression-pool.png"
+    },
+    {
+      "id": "06-photo-cancel",
+      "file": "bmo/app.py",
+      "start": 233,
+      "end": 246,
+      "title": "촬영이 끝난 뒤에도 요청 유효성 확인하기",
+      "source_sha256": "6958f4e71284cf2f7b38c14c677a1f1c5f129fa823142dbf19e270c2cab0a047",
+      "snippet": "docs/snippets/06-photo-cancel.py",
+      "image": "assets/code/06-photo-cancel.png",
+      "local_snapshot_sha256": "b824bdb825dd9035f5d91ef85f60c30ba3aa118d3e6f0fe4126ef3308f1e19e2"
+    }
+  ],
+  "sha256_format": "UTF-8 source with LF line endings as committed by Git"
+}

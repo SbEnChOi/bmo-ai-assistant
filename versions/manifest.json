@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-22",
+  "versions": [
+    {
+      "file": "BMO-auto-dialog-experiment-2026-10-15.zip",
+      "active": false,
+      "sha256": "17c89dbafe82e6462ceb002b0ee4df46e3128e1c792c9911482f1ab06370439c",
+      "api_key_template_empty": true,
+      "source_sha256": "bd46c49d37f464a4ed1865f94591c0e479f91aa380ee7510fc22b39a30468696",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-manual-thinking-2026-10-15.zip",
+      "active": false,
+      "sha256": "e2bcbc1326e500d9f5b5296f2b07aa4c883f219bdc47a1213f38e5629839e122",
+      "api_key_template_empty": true,
+      "source_sha256": "edecd1b96cc78adc8e134fc5770eedad25025fab09ed195888b40831557551da",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-manual-audio-2026-10-15.zip",
+      "active": false,
+      "sha256": "9f87b558ffb47818e55a3215bc6ba2841f10f6132c05da1ec060848c0d793648",
+      "api_key_template_empty": true,
+      "source_sha256": "8a3671aad72ab37add941c43d4190f0f218c9395a84be25b7e322d3cd1290b30",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-realtime-touch-2026-10-15.zip",
+      "active": false,
+      "sha256": "f7d28cfc2bdaed03531004c8563d2ccceaba9b126f4ec9a0510bba36d08dda32",
+      "api_key_template_empty": true,
+      "source_sha256": "4428cbd626518424e256d479e763ce716e5ae5aa32a4fb8167d31fb40b5ba0fd",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-audio-controls-2026-10-15.zip",
+      "active": false,
+      "sha256": "a14c9e6fee0a7e486fb63943349ab7fa17f9b42f7789bb7916025cc2af9328f5",
+      "api_key_template_empty": true,
+      "source_sha256": "ad76f39d58ed43b4330a9252b32f614b65f12e0349ad72ecadf3beb5142be39f",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-emotion-faces-2026-10-15.zip",
+      "active": false,
+      "sha256": "f90dc25599a3e0fc2a2866416e49e4d8f8b0b7ded0e71e8bc17fe426adb3ff6c",
+      "api_key_template_empty": true,
+      "source_sha256": "de6a70a6777494590d133f064883c5730c380b6ebbacc002e873d2bc66018f51",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-proactive-observation-2026-10-16.zip",
+      "active": false,
+      "pi_deployed": false,
+      "sha256": "2a4b2076df027725df0fe5b69a7acc6f67ce7bafe2b35a93413c55b974925dc1",
+      "api_key_template_empty": true,
+      "source_sha256": "d5fd0e94658dd8b04a4bc191b4a3858af58f3140da3327b7122168e6c06af4c5",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-live-noeul-2026-10-21.zip",
+      "active": false,
+      "pi_deployed": false,
+      "sha256": "30ec7024897dcd9b2f753aac97e91155918892460e7f8dd2dfbea508d1afb7b1",
+      "api_key_template_empty": true,
+      "python_tests": 123,
+      "javascript_tests": 53,
+      "live_voice_tested": false,
+      "source_sha256": "4fc9e96f0d16acc2a7950806fbbceb528b9bb082eb4d35acec531ec99c47b97e",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-final-noeul-proactive-2026-10-22.zip",
+      "active": false,
+      "pi_deployed": true,
+      "sha256": "95d98660e06374163157394e210401ca73ce481ff5c567166ce4fa6058fa8beb",
+      "api_key_template_empty": true,
+      "python_tests": 128,
+      "javascript_tests": 61,
+      "live_synthetic_voice_tested": true,
+      "live_camera_delegation_tested": true,
+      "source_sha256": "2a4f4d87b3bd02570c382dff2efcfce1c76eb47820d71de2d9e855dd99c2b9ec",
+      "public_copy_sanitized": true
+    },
+    {
+      "file": "BMO-fresh-photo-noeul-2026-10-22.zip",
+      "active": true,
+      "pi_deployed": true,
+      "sha256": "46366215ca81ab8b958818b7ac4c3b77b453a072a6f573c980e0d9d9ac182547",
+      "api_key_template_empty": true,
+      "python_tests": 141,
+      "javascript_tests": 61,
+      "live_fresh_photo_requests_tested": 2,
+      "source_sha256": "9438b5ca9cbb482da075f3e0da0fd9d3cc27c104086f39ed05d12f97e1b6260f",
+      "public_copy_sanitized": true
+    }
+  ],
+  "active_scope": "Raspberry Pi deployed; requested-photo freshness verified twice; final documentation synchronized",
+  "pi_last_deployed": "BMO-fresh-photo-noeul-2026-10-22.zip",
+  "public_copy_note": "Connection identifiers replaced with examples; source_sha256 identifies the original local release."
+}

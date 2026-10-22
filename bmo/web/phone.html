@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#d7f0d4">
+  <meta name="bmo-dialogue-mode" content="realtime" data-dialogue-mode>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>BMO · 음성 화면</title>
+  <link rel="stylesheet" href="/phone.css">
+  <script defer src="/emotions.js"></script>
+  <script defer src="/face.js"></script>
+  <script defer src="/phone.js"></script>
+  <script defer src="/mic-focus.js"></script>
+  <script defer src="/realtime.js"></script>
+  <script defer src="/live.js"></script>
+  <script defer src="/audio-controls.js"></script>
+  <script defer src="/observation.js"></script>
+</head>
+<body>
+  <main class="bmo-shell">
+    <header class="shell-top"><span id="connection" class="connection">연결 중</span></header>
+    <p class="rotate-hint">BMO 화면은 가로로 놓아 주세요.</p>
+    <div class="scene-pill" id="scene-pill" hidden>장면 입력 꺼짐</div>
+    <section id="pair-panel" class="pair-panel" hidden><h1>BMO와 연결하기</h1><p>파이 또는 PC 터미널의 연결 코드를 입력해 주세요.</p><form id="pair-form"><input id="pair-code" aria-label="연결 코드" autocomplete="off" required><button>연결</button></form></section>
+    <section id="face" class="face-screen" data-state="idle" role="img" aria-label="편안한 BMO 얼굴">
+      <img id="face-frame-a" class="face-frame is-visible" src="/faces/Rosto-01.jpg" alt="" aria-hidden="true" fetchpriority="high">
+      <img id="face-frame-b" class="face-frame" alt="" aria-hidden="true">
+    </section>
+    <div class="shell-bottom">
+      <div id="response-pending" class="response-pending" role="status" aria-live="polite" hidden>
+        <span>생각 중</span><span class="waiting-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+      <div class="face-caption"><p id="status" aria-live="polite">안녕! 오늘은 어떤 이야기를 해볼까?</p><p id="transcript"></p><p id="live-input" hidden></p><p id="live-output" hidden></p></div>
+      <button id="enable-sound" class="sound-button" disabled>BMO 소리 켜기</button>
+      <button id="rt-audio" class="sound-button" hidden>실시간 소리 켜기</button>
+      <div class="controls">
+        <button id="cancel" class="icon-button" aria-label="녹음 취소 또는 음성 멈춤">×</button>
+        <button id="talk" class="talk-button" disabled><span class="mic-icon" aria-hidden="true"></span><span id="talk-label">눌러서 말하기</span></button>
+        <button id="rt-start" class="realtime-button" aria-pressed="false" disabled>실시간 대화 시작</button>
+        <button id="replay" class="icon-button" aria-label="답변 다시 듣기" hidden>↻</button>
+        <details class="realtime-panel"><summary>설정</summary><div class="realtime-options">
+          <div class="mic-focus-settings" aria-label="가까운 목소리 우선">
+            <label><input id="mic-focus-enabled" type="checkbox" checked> 가까운 목소리 우선</label>
+            <label for="mic-focus-sensitivity">말소리 반응 민감도 <output id="mic-focus-value">65%</output></label>
+            <input id="mic-focus-sensitivity" type="range" min="20" max="90" step="5" value="65">
+            <p id="mic-focus-status">실시간 대화를 시작하면 입력 필터가 작동해요.</p>
+            <p>작은 주변 소리는 줄이고 가까운 목소리에 반응해요. 잘 안 들으면 민감도를 높여 주세요. 목소리 신원 구별 기능은 아니에요.</p>
+          </div>
+          <div class="observation-settings" aria-label="주변 관찰">
+            <label><input id="observe-enabled" type="checkbox" disabled> 대화하지 않을 때도 주변 관찰</label>
+            <label><input id="observe-proactive" type="checkbox" disabled> 의미 있는 변화가 생기면 먼저 말하기</label>
+            <p id="observe-status" role="status">카메라 연결 확인 중</p>
+            <p id="observe-summary">최근 상황 분석을 기다리고 있어요.</p>
+            <p>장면이 달라지면 AI로 사진을 보내요. 먼저 말하기는 3분 이상 간격으로, 한 시간에 최대 6회예요.</p>
+          </div>
+          <div class="audio-settings" aria-label="장치 음량">
+            <label for="speaker-volume">스피커 음량 <output id="speaker-level" for="speaker-volume">—</output></label>
+            <div class="volume-row"><button id="speaker-down" aria-label="스피커 음량 줄이기" disabled>−</button><input id="speaker-volume" type="range" min="0" max="100" step="1" value="100" disabled><button id="speaker-up" aria-label="스피커 음량 높이기" disabled>+</button></div>
+            <label for="microphone-volume">마이크 음량 <output id="microphone-level" for="microphone-volume">—</output></label>
+            <div class="volume-row"><button id="microphone-down" aria-label="마이크 음량 줄이기" disabled>−</button><input id="microphone-volume" type="range" min="0" max="100" step="1" value="39" disabled><button id="microphone-up" aria-label="마이크 음량 높이기" disabled>+</button></div>
+            <p id="audio-settings-status" role="status" aria-live="polite">설정을 열면 현재 음량을 확인해요.</p>
+          </div>
+          <p id="rt-description">실시간 대화를 시작하면 말을 마칠 때마다 답해요. 음성은 OpenAI로 전송됩니다. 한 번에 최대 5분.</p>
+          <button id="rt-mute" hidden>마이크 끄기</button><button id="rt-interrupt" hidden>말 멈추기</button><button id="rt-stop" hidden>실시간 종료</button>
+          <button id="rt-mock">모의 연결 · API 사용 없음</button><button id="rt-sample" hidden>모의 대화 보기</button>
+          <label><input id="rt-vision" type="checkbox"> <span id="rt-vision-label">준비된 프레임을 OpenAI로 전송</span></label>
+          <p id="rt-status" aria-live="polite">실시간 꺼짐</p><p id="rt-frames">프레임 전송 꺼짐</p><p id="rt-metrics">연결 시간과 사용량을 여기에 표시해요.</p>
+        </div></details>
+      </div>
+      <p id="hint">한 번 눌러 녹음하고, 다시 눌러 보내세요.</p><p id="error" role="alert"></p>
+    </div>
+  </main>
+  <audio id="player" preload="auto" playsinline></audio>
+  <audio id="rt-player" autoplay playsinline></audio>
+</body>
+</html>

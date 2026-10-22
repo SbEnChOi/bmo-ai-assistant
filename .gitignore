@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.venv/
+.venv-camera/
+.venv-live/
+.env
+*.log
+test-results/
+*.zip
+certs/
+*.pem
+*.key
+/bmo/private_config.py
+.playwright-cli/
+output/playwright/
+
+# Public historical releases are intentional documentation assets
+!versions/*.zip

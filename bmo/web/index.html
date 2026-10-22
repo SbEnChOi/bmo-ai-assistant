@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#e9f2ec">
+  <title>BMO · PC 관리자</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+  <script defer src="/observation.js"></script>
+  <script defer src="/frames.js"></script>
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <div><span class="eyebrow">BMO CONTROL ROOM</span><h1>BMO 관리자</h1><p>문장과 사진을 준비하고, 아이폰의 BMO와 같은 대화를 공유합니다.</p></div>
+      <div class="header-actions"><span id="connection" class="connection">서버 연결 중</span><span id="phone-online" class="connection">아이폰 확인 중</span><a class="phone-link" href="/phone" target="_blank" rel="noopener">휴대폰 화면 보기 ↗</a></div>
+    </header>
+    <section id="pair-panel" class="card" hidden><h2>서버에 연결</h2><p>서버 터미널의 Device pairing code를 입력하세요.</p><form id="pair-form"><input id="pair-code" autocomplete="off" aria-label="연결 코드" required><button>연결</button></form></section>
+    <div class="layout">
+      <section class="card conversation">
+        <div class="section-head"><div><span class="eyebrow">SHARED CONVERSATION</span><h2>함께 나눈 대화</h2></div><span id="phase" class="phase">대기 중</span></div>
+        <div id="events" class="events" aria-live="polite"><p class="empty">아직 나눈 대화가 없습니다.</p></div>
+        <div id="error" role="alert"></div>
+        <form id="chat" class="chat-form"><label for="question">BMO에게 문장 보내기</label><div class="chat-row"><input id="question" maxlength="3000" placeholder="아이폰에서 말하기 어려울 때 여기에서 입력하세요" required><button id="send" disabled>보내기</button></div></form>
+        <div class="conversation-foot"><span id="queue-status">두 화면의 요청은 순서대로 처리됩니다.</span><button id="reset" class="text-button">대화 지우기</button></div>
+      </section>
+      <aside class="side">
+        <section class="card image-card"><span class="eyebrow">VISUAL INPUT</span><h2>입력 이미지</h2><p class="support">장면 사용 여부를 선택하면 다음 질문부터 적용됩니다.</p>
+          <div class="scene-options" role="group" aria-label="장면 입력 방식"><label><input type="radio" name="scene" value="off" checked> 사용 안 함</label><label><input type="radio" name="scene" value="camera"> 파이 카메라 / 시작 사진</label><label><input type="radio" name="scene" value="upload"> PC에서 올린 사진</label><label><input type="radio" name="scene" value="frames"> 여러 프레임</label></div>
+          <button id="camera-preview-button" class="secondary" disabled>지금 카메라 보기</button><div id="camera-preview" class="image-preview" hidden><img id="camera-live" alt="방금 파이 카메라로 촬영한 사진"><p class="support">방금 촬영한 사진입니다. 질문하면 새 사진을 촬영합니다.</p></div>
+          <div class="upload-box"><label for="image-file">JPG 또는 PNG 사진</label><input id="image-file" type="file" accept="image/jpeg,image/png"><button id="upload" class="secondary" disabled>사진 올리기</button></div>
+          <div id="image-preview" class="image-preview" hidden><img id="preview" alt="현재 올린 사진 미리보기"><div><span id="image-name"></span><button id="clear-image" class="text-button">사진 제거</button></div></div>
+          <p id="scene-note" class="support">지금은 사진을 질문에 첨부하지 않습니다.</p>
+        </section>
+        <section class="card"><span class="eyebrow">VISUAL SEQUENCE</span><h2>여러 프레임</h2><p class="support">PC에 먼저 보관합니다. 기존 질문은 ‘여러 프레임’을 선택해 보내고, 실시간 모드는 아이패드에서 프레임 전송을 켜세요.</p><label for="frame-files">사진 묶음 · 파일 이름 순서 (최대 10장)</label><input id="frame-files" type="file" accept="image/jpeg,image/png" multiple><button id="frame-upload" class="secondary" disabled>사진 묶음 준비</button><div id="frame-preview" class="frame-preview"></div><div class="frame-actions"><button id="webcam-start" class="secondary">PC 웹캠 시작</button><button id="webcam-stop" class="secondary" disabled>웹캠 중지</button><button id="frames-clear" class="text-button">프레임 지우기</button></div><video id="webcam-video" muted playsinline hidden></video><p id="frame-status" class="support">프레임 없음</p><p id="frame-error" role="alert"></p><p class="support">웹캠은 초당 1회 수집, 최근 10초·최대 10장 보관, 한 번에 최대 4장 선택. 준비된 사진은 현재 장면으로 취급하지 않습니다.</p></section>
+        <section class="card"><h2>실시간 대화</h2><p id="admin-rt-status" class="support">꺼짐</p><button id="admin-rt-stop" class="secondary" disabled>실시간 강제 종료</button><p class="support">BMO 화면 아래의 ‘실시간 대화 시작’을 누르면 마이크로 대화합니다. 종료하면 눌러서 말하기로 돌아갑니다.</p></section>
+        <section class="card"><h2>자동 주변 관찰</h2>
+          <label><input id="observe-enabled" type="checkbox" disabled> 대화하지 않을 때도 주변 관찰</label>
+          <label><input id="observe-proactive" type="checkbox" disabled> 의미 있는 변화가 생기면 먼저 말하기</label>
+          <p id="observe-status" class="support" role="status">카메라 연결 확인 중</p>
+            <p id="observe-summary" class="support">최근 상황 분석을 기다리고 있어요.</p>
+          <p class="support">사진은 메모리에만 보관하고, 장면 변화·갱신 시 AI로 전송해요. 먼저 말하기는 최소 3분 간격, 시간당 최대 6회예요.</p>
+        </section>
+        <section class="card status-card"><span class="eyebrow">SYSTEM</span><h2>연결 상태</h2><dl><div><dt>대화 모델</dt><dd id="provider">확인 중</dd></div><div><dt>이미지 소스</dt><dd id="source">확인 중</dd></div><div><dt>API 시도</dt><dd id="calls">0회</dd></div></dl><p class="support">이미지는 서버 메모리에만 보관됩니다. 자동 관찰을 켜면 대기 중에도 필요한 사진이 AI API로 전송됩니다.</p></section>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
